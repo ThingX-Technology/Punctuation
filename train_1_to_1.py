@@ -29,7 +29,7 @@ from model_1_to_1 import (
 from data_1_to_1 import load_file, preprocess_data, create_data_loader
 
 # CUDA = torch.cuda.is_available()
-CUDA = True
+CUDA = False
 
 def validate(model, criterion, epoch, epochs, iteration, iterations, data_loader_valid, save_path, train_loss, best_val_loss, best_model_path, punctuation_enc):
 
@@ -253,7 +253,7 @@ if __name__ == '__main__':
     # NOTE ALbert-small-rnn tokenizer
     # tokenizer = BertTokenizer.from_pretrained('./models/albert_chinese_small/', do_lower_case=True)
     # NOTE bert-based-chinese tokenizer
-    tokenizer = BertTokenizer.from_pretrained('./models/bert_base_chinese/', do_lower_case=True)
+    tokenizer = BertTokenizer.from_pretrained('bert-base-chinese', do_lower_case=True)
 
     print('PREPROCESSING DATA...')
     X_train, y_train = preprocess_data(data_train, tokenizer, punctuation_enc, seq_len)

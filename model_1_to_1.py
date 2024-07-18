@@ -2011,8 +2011,8 @@ class BertChineseRNNnoBnLinearPunc(nn.Module):
 class BertChineseLinearPunc(nn.Module):
     def __init__(self, segment_size, output_size, dropout, vocab_size):
         super(BertChineseLinearPunc, self).__init__()
-        print("fucking code**************")
-        self.bert = AutoModel.from_pretrained('./models/bert_base_chinese/')
+        # self.bert = AutoModel.from_pretrained('./models/bert_base_chinese/')
+        self.bert = AutoModel.from_pretrained('bert-base-chinese')
         # self.bert_vocab_size = vocab_size
         # self.bn = nn.BatchNorm1d(segment_size*self.bert_vocab_size)
         # self.fc = nn.Linear(segment_size*self.bert_vocab_size, output_size)
@@ -3532,14 +3532,14 @@ class BertChineseEmbSlimCNNlstmBertLSTM(nn.Module):
     # 在bert的embedding后面直接加一个CNN进行，和bert的组合
     def __init__(self, segment_size, output_size, dropout, vocab_size):
         super(BertChineseEmbSlimCNNlstmBertLSTM, self).__init__()
-        print("fucking code**************")
-        self.bert = BertModel.from_pretrained('./models/bert_base_chinese/')
-        self.bert_2 = BertModel.from_pretrained('./models/bert_base_chinese/')
+        self.bert = BertModel.from_pretrained('bert-base-chinese')
+        
+        self.bert_2 = BertModel.from_pretrained('bert-base-chinese')
         # self.bert_vocab_size = vocab_size
         # self.bn = nn.BatchNorm1d(segment_size*self.bert_vocab_size)
         # self.fc = nn.Linear(segment_size*self.bert_vocab_size, output_size)
         self.bert_size = 768
-
+        
         self.conv = nn.ModuleList()
         cnn_kernel_size = (3, self.bert_size)
         cnn_filter_num = self.bert_size
@@ -3547,7 +3547,7 @@ class BertChineseEmbSlimCNNlstmBertLSTM(nn.Module):
         self.cnn_kernel_size = cnn_kernel_size
         self.cnn_filter_num = cnn_filter_num
         self.cnn_layer_num = cnn_layer_num
-
+        
         for i in range(cnn_layer_num):
             module_tmp = nn.ModuleDict({
                 'conv_w_{}'.format(i):
@@ -3580,7 +3580,7 @@ class BertChineseEmbSlimCNNlstmBertLSTM(nn.Module):
             batch_first=True,
             bidirectional=True
         )
-
+        
         # NOTE dense*2 使用bert中间层 dense hidden_state self.bert_size
         self.dropout = nn.Dropout(dropout)
         # lstm hidden*2
