@@ -18,11 +18,14 @@ def encode_data(data, tokenizer, punctuation_enc):
     Y = []
     for line in data:
         word, punc = line.split()
-
+        print('#'*20)
+        print(line)
         punc = punc.strip()
+        print('word:', word, 'punc:', punc)
         tokens = tokenizer.tokenize(word)
         x = tokenizer.convert_tokens_to_ids(tokens)
         y = [punctuation_enc[punc]]
+        print(y)
         if len(x) > 0:
             if len(x) > 1:
                 y = (len(x)-1)*[0]+y
