@@ -8,7 +8,7 @@
 
 ## Requirment
 
-- Required package.
+- python 3.6
 
 ```python
 torch==1.1.0
