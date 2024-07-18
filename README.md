@@ -23,7 +23,9 @@ transformers==4.0.1
 ```bash
 pip install -r requirements.txt
 ```
-
+- download pretrain model
+https://drive.google.com/drive/folders/15zM-UQP7enaSg7YYgDa-Jx_k67vQaA7x?usp=drive_link
+put it into ./models
 ## 1. Difference from My Previous Repo
 
 - previous repo [punctuation-restoration-pytorch](https://github.com/yuboona/punctuation-restoration-pytorch)
